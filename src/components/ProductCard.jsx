@@ -11,7 +11,10 @@ export default function ProductCard({ product }) {
       <p>${product.price}</p>
       <p>Stock: {product.stock}</p>
       <Link to={`/product/${product.id}`}>Ver detalle</Link><br/>
-      <button onClick={() => addToCart(product)} disabled={product.stock === 0}>
+      <button onClick={() => addToCart(product)} disabled={product.stock === 0}
+            style={{backgroundColor:product.stock ===0 ?"gray":"blue",color:"white",padding:"6px"}}
+        
+        >
         {product.stock==0? "Sin stock":"Agregar al carrito"}
       </button>
     </div>
