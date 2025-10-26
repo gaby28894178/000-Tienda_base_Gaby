@@ -7,17 +7,23 @@ export const CartProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
   const [products, setProducts] = useState(productsData);
 
-  const addToCart = (product) => {
-    const item = products.find((p) => p.id === product.id);
-    if (item.stock > 0) {
-      setCart((prev) => [...prev, product]);
-    } else {
-      alert('Sin stock');
-    }
-  };
+const addToCart = (product) => {
+  const updatedProducts = [...products];
+  const index = updatedProducts.findIndex((p) => p.id === product.id);
+
+  if (index !== -1 && updatedProducts[index].stock > 0) {
+    updatedProducts[index].stock -= 1;
+    setProducts(updatedProducts);
+    setCart((prev) => [...prev, product]);
+  } else {
+    alert('Sin stock disponible');
+  }
+};
+
 
   const payCart = () => {
     const updatedProducts = [...products];
+    
     cart.forEach((item) => {
       const index = updatedProducts.findIndex((p) => p.id === item.id);
       if (index !== -1 && updatedProducts[index].stock > 0) {

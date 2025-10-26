@@ -9,11 +9,12 @@ export default function Navbar() {
 
   return (
     <nav>
-      <Link to="/">Home</Link>
+      <Link to="/">Home</Link><br />
       {user && <Link to="/dashboard">Dashboard</Link>}
-      <span>🛒 {cart.length}</span>
-      {cart.length > 0 && <button onClick={payCart}>Pagar</button>}
-      {user ? <button onClick={logout}>Logout</button> : <Link to="/login">Login</Link>}
+      <span>🛒 {cart.length}</span> <br />
+      {/* {cart.length > 0 && <button onClick={payCart}>Pagar</button>} */}
+      {cart.length > 0 && <Link to="/checkout">Ir a pagar</Link>}
+      {user ? (<button onClick={logout}>Logout</button>) : <Link to="/login">Login</Link>}
     </nav>
   );
 }
