@@ -10,10 +10,10 @@ export default function ProductCard({ product }) {
       <h3>{product.name}</h3>
       <p>${product.price}</p>
       <p>Stock: {product.stock}</p>
+      <Link to={`/product/${product.id}`}>Ver detalle</Link><br/>
       <button onClick={() => addToCart(product)} disabled={product.stock === 0}>
-        Agregar al carrito
+        {product.stock==0? "Sin stock":"Agregar al carrito"}
       </button>
-      <Link to={`/product/${product.id}`}>Ver detalle</Link>
     </div>
   );
 }
